@@ -1,0 +1,165 @@
+﻿# =============================================================================
+# Ocean Stress Engine (OSE) — Configuration
+# Version: 1.0.0
+#
+# IMPORTANT: Weights and anomaly-score mappings are LABELED PLACEHOLDERS.
+# They have been set to reasonable first-pass values based on general
+# oceanographic principles, but should be reviewed and calibrated against
+# known stress events before use in production.
+#
+# How to change weights:
+#   1. Edit the relevant ecosystem block below.
+#   2. Weights are automatically re-normalised across available variables,
+#      so they are relative, not absolute.
+#   3. Run validate_stress_events.py to check calibration.
+# =============================================================================
+
+# ---------------------------------------------------------------------------
+# Depth layer definitions (dbar / m, surface pressure ≈ depth in m)
+# ---------------------------------------------------------------------------
+depth_layers:
+  surface:
+    min_dbar: 0
+    max_dbar: 50
+    label: "Surface (0–50 m)"
+  mid:
+    min_dbar: 50
+    max_dbar: 200
+    label: "Mid-water (50–200 m)"
+  deep:
+    min_dbar: 200
+    max_dbar: 1000
+    label: "Deep (200–1000 m)"
+
+# ---------------------------------------------------------------------------
+# Ecosystem-specific variable weights
+#
+# PLACEHOLDER: These weights are initial estimates pending calibration.
+# Sources consulted for ordering (not magnitude):
+#   - IPCC AR6 Ch.3: ocean temperature as primary stress driver for marine life
+#   - Hoegh-Guldberg et al. (2017) Science: temperature dominant for coral
+#   - Cheung et al. (2013) NCC: salinity secondary for fisheries
+#
+# Variables: temperature, salinity
+# Optional (future BGC-Argo): oxygen, ph
+# ---------------------------------------------------------------------------
+ecosystem_weights:
+  coral_reef:
+    # Coral reefs are highly temperature-sensitive. SST (skin surface) is the
+    # primary bleaching driver. Argo subsurface temp is secondary. Salinity
+    # matters less at normal oceanic ranges.
+    # PLACEHOLDER — pending calibration against bleaching event data.
+    temperature: 0.35
+    salinity:    0.15
+    sst:         0.50   # NOAA OISST skin SST — primary bleaching driver
+    oxygen:      0.00   # BGC-Argo only; re-normalised if absent
+    ph:          0.00   # BGC-Argo only; re-normalised if absent
+
+  fisheries:
+    # Fish larvae sensitive to both SST and subsurface temp+salinity.
+    # PLACEHOLDER — pending calibration against fish stock data.
+    temperature: 0.30
+    salinity:    0.20
+    sst:         0.30
+    oxygen:      0.20   # BGC-Argo only
+    ph:          0.00   # BGC-Argo only
+
+  general:
+    # Equal weighting across SST, subsurface temp, and salinity.
+    # PLACEHOLDER — no domain-specific calibration applied.
+    temperature: 0.30
+    salinity:    0.20
+    sst:         0.50
+    oxygen:      0.00   # BGC-Argo only
+    ph:          0.00   # BGC-Argo only
+
+# ---------------------------------------------------------------------------
+# Anomaly → sub-score mapping
+#
+# Maps a z-score (standard deviations from climatological mean) to a
+# 0–100 sub-score using a piecewise linear function.
+#
+# PLACEHOLDER: Breakpoints are initial estimates. Calibration methodology:
+#   1. Collect z-scores for known HIGH/SEVERE stress events (2016 bleaching).
+#   2. Adjust breakpoints so those events produce scores in 50–100 range.
+#   3. Verify LOW events (2010 non-bleaching year) fall in 0–25 range.
+#
+# Format: [[z_score, sub_score], ...] — must be monotonically increasing.
+# Negative z-scores (cooler/fresher than baseline) also map to stress.
+# ---------------------------------------------------------------------------
+anomaly_to_score:
+  # |z| breakpoints → sub-score
+  # 0.0 std = at climatological mean → 0 stress
+  # 1.0 std = notable departure      → ~25
+  # 2.0 std = significant anomaly    → ~50
+  # 3.0 std = extreme event          → ~75
+  # 4.0+ std = unprecedented         → 100
+  #
+  # PLACEHOLDER
+  breakpoints:
+    - [0.0,  0]
+    - [1.0, 25]
+    - [2.0, 50]
+    - [3.0, 75]
+    - [4.0, 100]
+
+# ---------------------------------------------------------------------------
+# Stress score category thresholds
+# ---------------------------------------------------------------------------
+categories:
+  LOW:      [0,  25]
+  MODERATE: [25, 50]
+  HIGH:     [50, 75]
+  SEVERE:   [75, 100]
+
+# ---------------------------------------------------------------------------
+# Confidence level thresholds
+# ---------------------------------------------------------------------------
+confidence:
+  # Minimum number of Argo profiles to consider confidence HIGH
+  min_profiles_high:   5
+  min_profiles_medium: 2
+  # Maximum QC exclusion fraction to keep HIGH confidence
+  max_exclusion_fraction_high:   0.15   # >15% excluded → not HIGH
+  max_exclusion_fraction_medium: 0.40   # >40% excluded → LOW
+  # Maximum allowed distance (degrees) between nearest float and region centre
+  max_distance_high_deg:   3.0
+  max_distance_medium_deg: 7.0
+
+# ---------------------------------------------------------------------------
+# Climatology baseline settings
+# ---------------------------------------------------------------------------
+climatology:
+  # Default baseline period for historical Argo climatology
+  default_period:
+    start: "2005-01-01"
+    end:   "2020-12-31"
+
+  # WOA23 ERDDAP source (preferred when available)
+  # Dataset: World Ocean Atlas 2023, 0.25-degree grid, monthly climatology
+  # Server:  NOAA AOML CWCGOM ERDDAP — confirmed working 2026
+  # Citation: Garcia et al. (2024), NOAA Atlas NESDIS 89/90
+  #           https://doi.org/10.25923/bg7n-vp49 (temperature)
+  #           https://doi.org/10.25923/70qt-9574 (salinity)
+  woa23:
+    base_url: "https://cwcgom.aoml.noaa.gov/erddap/griddap"
+    temperature_dataset: "WOA_TEMP_d48d_916b_3478"
+    salinity_dataset:    "WOA_SAL_873e_726a_1b4d"
+    temperature_var:     "t_an"
+    salinity_var:        "s_an"
+    timeout_s: 25
+
+  # Cache settings — files written with ose_ prefix
+  cache:
+    enabled: true
+    directory: "ose_cache"        # relative to the FloatAi/ working dir
+    ttl_days: 30                  # re-fetch if older than this
+
+# ---------------------------------------------------------------------------
+# Argo fetch settings (read-only, never writes to Argo data)
+# ---------------------------------------------------------------------------
+argo:
+  # Historical baseline fetch: split into 3-month chunks to avoid timeouts
+  baseline_months_per_chunk: 3
+  # Minimum profiles required before OSE will produce any score at all
+  min_profiles_for_score: 1

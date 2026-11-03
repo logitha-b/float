@@ -1,0 +1,174 @@
+# =============================================================================
+# Fisher Advisory Engine — Hindi (हिन्दी) templates
+# review_status: draft
+# needs_native_review: true
+#
+# ये अनुवाद प्रारंभिक (draft) हैं और किसी मूल हिन्दी भाषी द्वारा
+# समीक्षा की आवश्यकता है। इन्हें प्रोडक्शन में उपयोग से पहले
+# सत्यापित करें।
+# =============================================================================
+
+safety_line: >-
+  सुरक्षा: समुद्र में जाने से पहले IMD और INCOIS की आधिकारिक
+  मौसम, लहर और चक्रवात चेतावनियाँ अवश्य जाँचें।
+
+disclaimer: >-
+  यह सलाह केवल वर्तमान समुद्री स्थितियों का वर्णन करती है।
+  यह मछली के स्थानों की भविष्यवाणी नहीं करती, पकड़ की गारंटी नहीं देती,
+  और किसी यात्रा को सुरक्षित घोषित नहीं करती।
+
+card_title: "मछुआरा समुद्री सलाह"
+what_this_means_heading: "इसका क्या अर्थ हो सकता है"
+no_advisory_rules_active: >-
+  इस स्थान और दिन के लिए कोई सक्रिय सलाह नहीं है।
+confidence_label_heading: "विश्वसनीयता"
+data_age_label: "डेटा आयु"
+computed_at_label: "गणना समय"
+forecast_label: "मॉडल पूर्वानुमान"
+pending_review_banner: >-
+  यह अनुवाद समीक्षा के लिए लंबित है। कुछ पाठ अंग्रेज़ी में दिखाया जा सकता है।
+
+header_short: "{location} | {day} | {trip_type}"
+speech_header: "{day} को {location} के लिए मछुआरा सलाह।"
+
+unverified_coords_warning: >-
+  चेतावनी: इस बंदरगाह के निर्देशांक अभी सत्यापित नहीं हैं।
+  नीचे के सभी मान अमान्य हैं।
+
+future_day_notice: >-
+  नोट: कल की स्थितियाँ नवीनतम उपलब्ध अवलोकनों पर आधारित हैं।
+  SST मान अवलोकित डेटा हैं (पूर्वानुमान नहीं)।
+
+trip_type_nearshore: "तटीय (लगभग 12 NM के भीतर)"
+trip_type_offshore: "गहरे समुद्र (12 NM से परे)"
+
+indicator_sst: "समुद्री तापमान"
+sst_line: "समुद्री सतह तापमान: {sst_c}°C{anomaly_inline}।"
+sst_anomaly_inline: " (मौसमी औसत से {anomaly}°C {direction})"
+above: "अधिक"
+below: "कम"
+sst_no_data: "समुद्री सतह तापमान: डेटा उपलब्ध नहीं।"
+sst_stale_notice: "नोट: SST डेटा {age_h} घंटे पुराना है; स्थितियाँ बदल सकती हैं।"
+heatwave_active_short: "⚠ समुद्री हीटवेव की स्थिति पाई गई।"
+speech_sst: "समुद्री सतह का तापमान {sst_c} डिग्री सेल्सियस है।"
+speech_heatwave: "इस क्षेत्र में अभी समुद्री हीटवेव सक्रिय है।"
+
+indicator_currents: "समुद्री धाराएँ"
+currents_line: "सतही धारा: {speed} मीटर/सेकंड {direction} दिशा में (मॉडल पूर्वानुमान)।"
+currents_no_data: "सतही धारा: डेटा उपलब्ध नहीं।"
+speech_currents: >-
+  सतही धारा की गति {speed} मीटर प्रति सेकंड है, {direction} दिशा में जा रही है।
+  यह एक मॉडल पूर्वानुमान है।
+
+cardinal_n:  "उत्तर"
+cardinal_ne: "उत्तर-पूर्व"
+cardinal_e:  "पूर्व"
+cardinal_se: "दक्षिण-पूर्व"
+cardinal_s:  "दक्षिण"
+cardinal_sw: "दक्षिण-पश्चिम"
+cardinal_w:  "पश्चिम"
+cardinal_nw: "उत्तर-पश्चिम"
+
+indicator_front: "तापमान सीमा"
+front_detected_inline: "{dist_km} किमी दूर {strength} सीमा"
+front_not_detected: "पास में कोई तापमान सीमा नहीं मिली।"
+front_strength_weak: "कमज़ोर"
+front_strength_moderate: "मध्यम"
+front_strength_strong: "मज़बूत"
+
+indicator_productivity: "समुद्री उत्पादकता"
+productivity_line: "समुद्री उत्पादकता (क्लोरोफिल): {category}।"
+productivity_no_data: "उत्पादकता: डेटा उपलब्ध नहीं।"
+chl_no_data_short: "डेटा नहीं"
+chl_category_high: "अधिक"
+chl_category_moderate: "मध्यम"
+chl_category_low: "कम"
+chl_category_no_data: "डेटा नहीं"
+
+confidence_line: "डेटा विश्वसनीयता: {level}।"
+confidence_high: "उच्च"
+confidence_medium: "मध्यम"
+confidence_low: "कम"
+speech_confidence: "डेटा विश्वसनीयता {level} है।"
+
+severity_info:    "सूचना"
+severity_caution: "सावधानी"
+
+warm_sst_anomaly_caution: >-
+  समुद्री सतह तापमान मौसमी औसत से {anomaly}°C अधिक हो सकता है
+  (अवलोकित: {sst}°C)। मछलियाँ सामान्य से अधिक गहराई में रह सकती हैं।
+
+cool_sst_anomaly_info: >-
+  समुद्री सतह तापमान मौसमी औसत से {anomaly}°C कम हो सकता है
+  (अवलोकित: {sst}°C)। ठंडा पानी ऊपर आने का संकेत हो सकता है।
+
+heatwave_active: >-
+  समुद्री हीटवेव सक्रिय है। बढ़ा हुआ तापमान मछलियों के व्यवहार को प्रभावित कर सकता है।
+
+strong_current_caution: >-
+  सतही धारा की गति {speed} मीटर/सेकंड तक पहुँच सकती है। तेज़ धाराएँ
+  ईंधन खपत और नेविगेशन को प्रभावित कर सकती हैं।
+
+moderate_current_info: >-
+  सतही धारा की गति लगभग {speed} मीटर/सेकंड है। मध्यम धाराएँ जाल
+  डालने और निकालने को प्रभावित कर सकती हैं।
+
+thermal_front_detected: >-
+  {bearing}° दिशा में लगभग {dist_km} किमी दूर एक {strength} तापमान सीमा है।
+  तापमान सीमाएँ मछलियों को आकर्षित कर सकती हैं।
+
+thermal_front_nearby_offshore: >-
+  लगभग {dist_km} किमी दूर एक तापमान सीमा है।
+
+high_chlorophyll_info: >-
+  क्लोरोफिल का स्तर ऊँचा है, जो उच्च समुद्री उत्पादकता का संकेत देता है।
+
+low_chlorophyll_info: >-
+  क्लोरोफिल का स्तर कम है, जो कम समुद्री उत्पादकता का संकेत है।
+
+chlorophyll_no_data: >-
+  बादल या तटीय गंदलेपन के कारण क्लोरोफिल डेटा उपलब्ध नहीं है।
+
+shallow_mld_info: >-
+  समुद्र की मिश्रित परत उथली हो सकती है (लगभग {mld} मीटर गहरी)।
+  मछलियाँ सतह के पास अधिक केंद्रित हो सकती हैं।
+
+deep_mld_warm_info: >-
+  मिश्रित परत गहरी लगती है (लगभग {mld} मीटर), साथ में {anomaly}°C का
+  गर्म तापमान विचलन है। मछलियाँ गहरे पानी में हो सकती हैं।
+
+offshore_shallow_water_info: >-
+  इस स्थान पर समुद्र की गहराई लगभग {depth} मीटर है, जो गहरे समुद्र यात्रा
+  के लिए अपेक्षाकृत उथली है।
+
+no_data_label: "डेटा नहीं"
+error_label: "त्रुटि"
+
+final_advisory_heading: "समग्र सलाह"
+
+final_normal: >-
+  {location} के पास वर्तमान समुद्री स्थितियों के अनुसार, {trip_type} मछली पकड़ने
+  के लिए समुद्र सामान्य मौसमी सीमा में है। स्थितियों पर नज़र रखें और
+  रवाना होने से पहले IMD/INCOIS जाँचें।
+
+final_warm_anomaly: >-
+  {location} के पास समुद्री तापमान मौसमी औसत से अधिक है ({sst_c}°C)।
+  मछलियाँ सामान्य से गहरी हो सकती हैं। रवाना होने से पहले IMD/INCOIS जाँचें।
+
+final_heatwave: >-
+  {location} के पास समुद्री हीटवेव सक्रिय है (समुद्री तापमान {sst_c}°C)।
+  बढ़ा हुआ तापमान समुद्री जीवन को प्रभावित कर सकता है।
+  रवाना होने से पहले IMD/INCOIS चेतावनियाँ जाँचें।
+
+final_cool_anomaly: >-
+  {location} के पास समुद्री तापमान मौसमी औसत से कम है ({sst_c}°C)।
+  यह ऊपर आने वाले पानी का संकेत हो सकता है। रवाना होने से पहले IMD/INCOIS जाँचें।
+
+final_no_sst: >-
+  {location} के पास इस अवधि के लिए समुद्री डेटा नहीं मिला।
+  विश्वसनीयता कम है। इस सलाह पर अकेले निर्भर न रहें —
+  IMD/INCOIS चेतावनियाँ अवश्य जाँचें।
+
+final_disclaimer_short: >-
+  यह सलाह केवल अवलोकित समुद्री स्थितियों का वर्णन करती है।
+  यह मछली के स्थानों की भविष्यवाणी नहीं करती।

@@ -1,0 +1,27 @@
+﻿# FloatAi dependencies
+# Core
+python>=3.10
+pandas>=2.0
+numpy>=1.24
+
+# Web interface
+streamlit>=1.30
+
+# Real Argo data access
+argopy>=1.4
+erddapy<3          # CRITICAL: erddapy 3.x removed _quote_string_constraints
+                    # which argopy 1.4.0 still imports. Must stay below 3.
+
+# Real SST / climate data access
+xarray>=2024.1
+netCDF4>=1.6
+pydap>=3.4
+
+# LLM-based natural language understanding
+google-generativeai>=0.5   # Gemini; swap for openai>=1.0 if preferred
+
+# Windows: fixes SSL errors from antivirus/corporate HTTPS inspection
+pip-system-certs
+
+# Plotting (used in Streamlit heatwave charts)
+matplotlib>=3.7

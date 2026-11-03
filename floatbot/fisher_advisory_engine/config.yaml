@@ -1,0 +1,224 @@
+﻿# =============================================================================
+# Fisher Advisory Engine (FAE) — Configuration
+# Version: 1.0.0
+#
+# PLACEHOLDER NOTICE
+# ------------------
+# All numeric thresholds are labeled PLACEHOLDER until sourced from a
+# published reference or domain-expert review. Do not treat them as
+# scientifically validated.
+#
+# How to change thresholds:
+#   1. Edit the relevant section below.
+#   2. Add a "source" comment naming the paper or agency document.
+#   3. Re-run the test suite:  python -m pytest fisher_advisory_engine/tests/
+#   4. Run validate_incois.py if INCOIS PFZ files are available.
+# =============================================================================
+
+# ---------------------------------------------------------------------------
+# Service mode
+# ---------------------------------------------------------------------------
+mode: demo
+# demo       — enabled languages with review_status: pending are served,
+#              but every output carries a visible "translation pending review" banner.
+# production — only languages with review_status: reviewed are served.
+
+# ---------------------------------------------------------------------------
+# Language registry
+# ---------------------------------------------------------------------------
+# Adding a new language = adding files, NOT changing code.
+# Fields:
+#   code            : BCP-47 language code
+#   native_name     : name in its own script
+#   script          : script identifier (Latin, Tamil, Telugu, ...)
+#   enabled         : true → this language is in the serve set
+#   review_status   : reviewed | pending | draft
+#   font_stack      : CSS font-family for the dashboard card
+#   digit_style     : latin | native (default: latin)
+#   default_for_districts: list of Tamil Nadu district names that default to
+#                           this language when none is specified by the caller.
+#                           Leave empty for me to fill after confirming districts.
+languages:
+  en:
+    code: en
+    native_name: "English"
+    script: Latin
+    enabled: true
+    review_status: reviewed
+    font_stack: "'Segoe UI', system-ui, sans-serif"
+    digit_style: latin
+    default_for_districts: []   # TODO: confirm with operator
+
+  ta:
+    code: ta
+    native_name: "தமிழ்"
+    script: Tamil
+    enabled: true
+    review_status: draft
+    needs_native_review: true
+    font_stack: "'Noto Sans Tamil', 'Latha', 'Tamil MN', sans-serif"
+    digit_style: latin          # Use Latin digits until native-digit review
+    default_for_districts: []   # TODO: confirm Tamil Nadu districts
+
+  te:
+    code: te
+    native_name: "తెలుగు"
+    script: Telugu
+    enabled: true
+    review_status: draft
+    needs_native_review: true
+    font_stack: "'Noto Sans Telugu', 'Gautami', sans-serif"
+    digit_style: latin
+    default_for_districts: []
+
+  ml:
+    code: ml
+    native_name: "മലയാളം"
+    script: Malayalam
+    enabled: true
+    review_status: draft
+    needs_native_review: true
+    font_stack: "'Noto Sans Malayalam', 'Kartika', sans-serif"
+    digit_style: latin
+    default_for_districts: []
+
+  hi:
+    code: hi
+    native_name: "हिन्दी"
+    script: Devanagari
+    enabled: true
+    review_status: draft
+    needs_native_review: true
+    font_stack: "'Noto Sans Devanagari', 'Mangal', sans-serif"
+    digit_style: latin
+    default_for_districts: []
+
+# ---------------------------------------------------------------------------
+# Trip types
+# ---------------------------------------------------------------------------
+trip_types:
+  nearshore:
+    label: "Nearshore (within ~12 NM)"
+    max_distance_nm: 12
+    depth_context_m: 50         # PLACEHOLDER — typical nearshore shelf depth
+  offshore:
+    label: "Offshore (beyond ~12 NM)"
+    max_distance_nm: 200
+    depth_context_m: 200        # PLACEHOLDER
+
+# ---------------------------------------------------------------------------
+# Boat types (metadata only — no scoring difference in v1)
+# ---------------------------------------------------------------------------
+boat_types:
+  - traditional
+  - mechanized
+
+# ---------------------------------------------------------------------------
+# SST indicator thresholds
+# PLACEHOLDER — pending review against Bay of Bengal / Gulf of Mannar norms.
+# ---------------------------------------------------------------------------
+sst:
+  # Warm anomaly thresholds (°C above OISST climatological mean)
+  # Reference: PLACEHOLDER — needs IMD / INCOIS citation
+  warm_anomaly_caution_c: 1.0      # PLACEHOLDER
+  warm_anomaly_high_c:    2.0      # PLACEHOLDER
+  # Cool anomaly thresholds (°C below climatological mean)
+  cool_anomaly_caution_c: 1.0      # PLACEHOLDER
+  # Absolute SST range considered "comfortable" for surface fishing
+  # Reference: PLACEHOLDER
+  comfortable_min_c: 25.0          # PLACEHOLDER
+  comfortable_max_c: 32.0          # PLACEHOLDER
+
+# ---------------------------------------------------------------------------
+# Current indicator thresholds
+# PLACEHOLDER — pending review against coastal current norms for Tamil Nadu.
+# ---------------------------------------------------------------------------
+currents:
+  # Speed thresholds (m/s); 1 knot ≈ 0.514 m/s
+  # Reference: PLACEHOLDER
+  strong_speed_ms: 0.75            # PLACEHOLDER (~1.5 knots)
+  moderate_speed_ms: 0.35          # PLACEHOLDER (~0.7 knots)
+  # Data label: HYCOM currents are model output, not observations.
+  source_label: "HYCOM model (forecast)"
+
+# ---------------------------------------------------------------------------
+# Thermal front detection thresholds
+# PLACEHOLDER — needs review against published SST gradient criteria.
+# Reference cited in Belkin & O'Reilly (2009) is one candidate — NOT confirmed.
+# ---------------------------------------------------------------------------
+front:
+  # SST gradient magnitude threshold to classify a front as "detected"
+  gradient_threshold_c_per_km: 0.1   # PLACEHOLDER
+  # Minimum gradient to note "weak front"
+  gradient_weak_c_per_km: 0.05       # PLACEHOLDER
+  # Radius of SST box used for gradient calculation (degrees)
+  analysis_radius_deg: 1.0           # PLACEHOLDER
+  # Number of SST grid points needed; fewer → degraded confidence
+  min_grid_points: 9                 # PLACEHOLDER
+
+# ---------------------------------------------------------------------------
+# Productivity / chlorophyll indicator thresholds
+# PLACEHOLDER — pending review against published Bay of Bengal Chl-a norms.
+# Reference: PLACEHOLDER — could cite INCOIS ocean colour products but NOT confirmed.
+# ---------------------------------------------------------------------------
+chlorophyll:
+  # Chlorophyll-a categories (mg/m³)
+  # Reference: PLACEHOLDER
+  high_mg_m3:     1.0    # PLACEHOLDER
+  moderate_mg_m3: 0.3    # PLACEHOLDER
+  low_mg_m3:      0.1    # PLACEHOLDER
+  # Maximum data age for Chl-a to be used without a staleness caveat
+  max_age_days: 3        # PLACEHOLDER (satellite revisit ~daily but cloud gaps)
+
+# ---------------------------------------------------------------------------
+# Argo subsurface context settings
+# ---------------------------------------------------------------------------
+argo:
+  # Maximum distance (km) to nearest Argo float before marking "not available"
+  # Reference: PLACEHOLDER
+  max_dist_km: 150         # PLACEHOLDER
+  # Depth tolerance for mixed layer depth estimation (°C criterion, ISO 2801)
+  # Reference: de Boyer Montégut et al. (2004) — cited but threshold is PLACEHOLDER
+  mld_temp_criterion_c: 0.2   # PLACEHOLDER
+
+# ---------------------------------------------------------------------------
+# Confidence thresholds
+# ---------------------------------------------------------------------------
+confidence:
+  # Minimum indicators available (out of 6) for HIGH confidence
+  min_indicators_high:   4    # PLACEHOLDER
+  min_indicators_medium: 2    # PLACEHOLDER
+  # Maximum data age (hours) for SST to keep HIGH confidence
+  max_sst_age_hours_high:   48   # PLACEHOLDER
+  max_sst_age_hours_medium: 96   # PLACEHOLDER
+  # Maximum current data age
+  max_curr_age_hours_high:  24   # PLACEHOLDER (HYCOM forecast lag)
+  # If nearest Argo float is beyond this distance, lower confidence
+  argo_dist_degrade_km: 150      # PLACEHOLDER
+  # If SST grid resolution > threshold vs query box size, note mismatch
+  resolution_mismatch_threshold_deg: 0.5   # PLACEHOLDER
+
+# ---------------------------------------------------------------------------
+# Cache settings — all files use fae_ prefix
+# ---------------------------------------------------------------------------
+cache:
+  enabled: true
+  directory: "fae_cache"     # relative to FloatAi/ working directory
+  ttl_days: 1                # advisory data is time-sensitive; short TTL
+
+# ---------------------------------------------------------------------------
+# OISST baseline for anomaly calculation (reuses OSE OISST fetcher)
+# ---------------------------------------------------------------------------
+oisst_baseline:
+  years_back: 10             # PLACEHOLDER — number of same-calendar-month years
+  min_years:   3             # PLACEHOLDER — fewer years → LOW confidence
+
+# ---------------------------------------------------------------------------
+# Safety line key name (must be present in every language file)
+# ---------------------------------------------------------------------------
+safety_line_key: safety_line
+
+# ---------------------------------------------------------------------------
+# Disclaimer key name (must be present in every language file)
+# ---------------------------------------------------------------------------
+disclaimer_key: disclaimer

@@ -1,0 +1,230 @@
+# =============================================================================
+# Fisher Advisory Engine — Tamil (தமிழ்) templates
+# review_status: draft
+# needs_native_review: true
+#
+# IMPORTANT
+# ---------
+# These translations are DRAFT quality and have NOT been reviewed by a
+# native Tamil speaker.  They must not be used in production contexts.
+# Every sentence must be reviewed before this file is marked "reviewed".
+#
+# To request review:
+#   python -m fisher_advisory_engine.i18n export-review --lang ta --out ta_review.csv
+#
+# Forbidden phrases (see forbidden_ta.yaml): check before adding text.
+#
+# Script notes
+# ------------
+# - Use UTF-8 encoding.
+# - Digit style: latin (0-9) until a reviewer confirms native digits are
+#   preferred (Tamil: ௦ ௧ ௨ ...).
+# - Sentences end with a period or appropriate Tamil punctuation.
+# =============================================================================
+
+# ── Required keys (non-removable) ────────────────────────────────────────────
+
+# DRAFT — needs native review
+safety_line: >-
+  பாதுகாப்பு: கடலுக்கு செல்வதற்கு முன்பு IMD மற்றும் INCOIS இன் அதிகாரப்பூர்வ
+  வானிலை, அலை மற்றும் சூறாவளி எச்சரிக்கைகளை சரிபார்க்கவும்.
+
+# DRAFT — needs native review
+disclaimer: >-
+  இந்த ஆலோசனை தற்போதைய கடல் நிலைமைகளை மட்டுமே விவரிக்கிறது.
+  இது மீன் இருக்கும் இடங்களை கணிக்காது, மீன்பிடிக்கும் வாய்ப்பை உறுதிப்படுத்தாது,
+  அல்லது பயணம் பாதுகாப்பானது என்று அறிவிக்காது.
+
+# ── Card / page headings ─────────────────────────────────────────────────────
+
+# DRAFT
+card_title: "மீனவர் கடல் நிலை ஆலோசனை"
+what_this_means_heading: "இது என்னை குறிக்கலாம்"
+no_advisory_rules_active: >-
+  இந்த இடம் மற்றும் நாளுக்கு எந்த நிலை ஆலோசனைகளும் இல்லை.
+confidence_label_heading: "நம்பகத்தன்மை"
+data_age_label: "தரவு வயது"
+computed_at_label: "கணக்கிடப்பட்டது"
+forecast_label: "மாதிரி முன்னறிவிப்பு"
+pending_review_banner: >-
+  இந்த மொழிபெயர்ப்பு பூர்வீக மொழி மதிப்பாய்வுக்கு காத்திருக்கிறது.
+  சில உரை ஆங்கிலத்தில் காட்டப்படலாம்.
+
+# ── Header / location ────────────────────────────────────────────────────────
+
+# DRAFT
+header_short: "{location} | {day} | {trip_type}"
+speech_header: "{day} அன்று {location} க்கான மீனவர் ஆலோசனை."
+
+unverified_coords_warning: >-
+  எச்சரிக்கை: இந்த துறைமுகத்தின் ஆயத்தொலைவுகள் இன்னும் சரிபார்க்கப்படவில்லை.
+  கீழே உள்ள அனைத்து மதிப்புகளும் செல்லுபடியாகாது.
+
+future_day_notice: >-
+  குறிப்பு: நாளைய நிலைமைகள் கடைசியாக கிடைத்த கவனிப்புகளை அடிப்படையாக கொண்டவை.
+  SST மதிப்புகள் கவனிக்கப்பட்ட தரவு (முன்னறிவிப்பு அல்ல).
+
+# ── Trip types ───────────────────────────────────────────────────────────────
+
+# DRAFT
+trip_type_nearshore: "கரை அருகே (~12 NM க்குள்)"
+trip_type_offshore: "ஆழ்கடல் (~12 NM க்கு அப்பால்)"
+
+# ── SST ──────────────────────────────────────────────────────────────────────
+
+# DRAFT
+indicator_sst: "கடல் வெப்பநிலை"
+sst_line: "கடல் மேற்பரப்பு வெப்பநிலை: {sst_c}°C{anomaly_inline}."
+sst_anomaly_inline: " (பருவகால சராசரியை விட {anomaly}°C {direction})"
+above: "அதிகமாக"
+below: "குறைவாக"
+sst_no_data: "கடல் மேற்பரப்பு வெப்பநிலை: தரவு இல்லை."
+sst_stale_notice: "குறிப்பு: SST தரவு {age_h} மணி நேரம் பழையது; நிலைமைகள் மாறியிருக்கலாம்."
+heatwave_active_short: "⚠ கடல் வெப்ப அலை நிலைமைகள் கண்டறியப்பட்டன."
+speech_sst: "கடல் மேற்பரப்பு வெப்பநிலை {sst_c} டிகிரி செல்சியஸ் ஆகும்."
+speech_heatwave: "இந்த பகுதியில் தற்போது கடல் வெப்ப அலை உள்ளது."
+
+# ── Currents ─────────────────────────────────────────────────────────────────
+
+# DRAFT
+indicator_currents: "கடல் நீரோட்டங்கள்"
+currents_line: "மேற்பரப்பு நீரோட்டம்: {speed} மீ/வி {direction} திசையில் (மாதிரி முன்னறிவிப்பு)."
+currents_no_data: "மேற்பரப்பு நீரோட்டம்: தரவு இல்லை."
+speech_currents: >-
+  மேற்பரப்பு நீரோட்டம் {direction} திசையில் {speed} மீட்டர் வினாடிக்கு செல்கிறது.
+  இது ஒரு மாதிரி முன்னறிவிப்பு.
+
+# Cardinal directions — DRAFT
+cardinal_n:  "வடக்கு"
+cardinal_ne: "வடகிழக்கு"
+cardinal_e:  "கிழக்கு"
+cardinal_se: "தென்கிழக்கு"
+cardinal_s:  "தெற்கு"
+cardinal_sw: "தென்மேற்கு"
+cardinal_w:  "மேற்கு"
+cardinal_nw: "வடமேற்கு"
+
+# ── Thermal front ─────────────────────────────────────────────────────────────
+
+# DRAFT
+indicator_front: "வெப்பநிலை முன்னணி"
+front_detected_inline: "{dist_km} கிமீ தொலைவில் {strength} முன்னணி"
+front_not_detected: "அருகில் வெப்பநிலை முன்னணி எதுவும் கண்டறியப்படவில்லை."
+front_strength_weak: "பலவீனமான"
+front_strength_moderate: "மிதமான"
+front_strength_strong: "வலுவான"
+
+# ── Productivity ──────────────────────────────────────────────────────────────
+
+# DRAFT
+indicator_productivity: "கடல் உற்பத்தித்திறன்"
+productivity_line: "கடல் உற்பத்தித்திறன் (குளோரோபில்): {category}."
+productivity_no_data: "உற்பத்தித்திறன்: தரவு இல்லை (மேக மூடுபனி அல்லது தரவு இடைவெளி)."
+chl_no_data_short: "தரவு இல்லை"
+chl_category_high: "அதிகமாக"
+chl_category_moderate: "மிதமான"
+chl_category_low: "குறைவான"
+chl_category_no_data: "தரவு இல்லை"
+
+# ── Confidence labels ─────────────────────────────────────────────────────────
+
+# DRAFT
+confidence_line: "தரவு நம்பகத்தன்மை: {level}."
+confidence_high: "அதிகம்"
+confidence_medium: "மிதமான"
+confidence_low: "குறைவு"
+speech_confidence: "தரவு நம்பகத்தன்மை {level} ஆகும்."
+
+# ── Severity prefixes ─────────────────────────────────────────────────────────
+
+# DRAFT
+severity_info:    "குறிப்பு"
+severity_caution: "எச்சரிக்கை"
+
+# ── Rule message keys — DRAFT ──────────────────────────────────────────────────
+
+warm_sst_anomaly_caution: >-
+  கடல் மேற்பரப்பு வெப்பநிலை பருவகால சராசரியை விட {anomaly}°C அதிகமாக இருக்கலாம்
+  (கவனிக்கப்பட்டது: {sst}°C). மீன்கள் அதிக ஆழத்தில் இருக்கலாம்.
+
+cool_sst_anomaly_info: >-
+  கடல் மேற்பரப்பு வெப்பநிலை பருவகால சராசரியை விட {anomaly}°C குறைவாக இருக்கலாம்
+  (கவனிக்கப்பட்டது: {sst}°C). குளிர்ந்த நீர் மேல் நிறைவை குறிக்கலாம்.
+
+heatwave_active: >-
+  கடல் வெப்ப அலை தற்போது உள்ளது. அதிக வெப்பநிலை மீன்களின் நடத்தையை பாதிக்கலாம்.
+
+strong_current_caution: >-
+  மேற்பரப்பு நீரோட்டம் {speed} மீ/வி அடையலாம். வலுவான நீரோட்டங்கள் எரிபொருள்
+  நுகர்வு மற்றும் திசையை பாதிக்கலாம்.
+
+moderate_current_info: >-
+  மேற்பரப்பு நீரோட்டம் சுமார் {speed} மீ/வி உள்ளது. மிதமான நீரோட்டங்கள்
+  வலை அமைப்பை பாதிக்கலாம்.
+
+thermal_front_detected: >-
+  {bearing}° திசையில் சுமார் {dist_km} கிமீ தொலைவில் {strength} வெப்பநிலை முன்னணி
+  உள்ளது. வெப்பநிலை முன்னணிகள் மீன்களை கவரலாம்.
+
+thermal_front_nearby_offshore: >-
+  ஒரு வெப்பநிலை முன்னணி சுமார் {dist_km} கிமீ தொலைவில் உள்ளது.
+
+high_chlorophyll_info: >-
+  குளோரோபில் அளவுகள் உயர்ந்துள்ளன, இது அதிக கடல் உற்பத்தித்திறனை குறிக்கலாம்.
+
+low_chlorophyll_info: >-
+  குளோரோபில் அளவுகள் குறைவாக உள்ளன, இது கடல் உற்பத்தித்திறன் குறைவாக இருப்பதை
+  குறிக்கலாம்.
+
+chlorophyll_no_data: >-
+  மேக மூடுபனி அல்லது கடலோர கலக்கம் காரணமாக குளோரோபில் தரவு கிடைக்கவில்லை.
+
+shallow_mld_info: >-
+  கடலின் கலப்பு அடுக்கு ஆழம் சுமார் {mld} மீட்டராக இருக்கலாம்.
+  மீன்கள் மேற்பரப்பின் அருகில் இருக்கலாம்.
+
+deep_mld_warm_info: >-
+  கலப்பு அடுக்கு சுமார் {mld} மீட்டர் ஆழமாக இருக்கலாம்,
+  மேலும் {anomaly}°C வெப்ப அசாதாரணம் உள்ளது. மீன்கள் ஆழத்தில் இருக்கலாம்.
+
+offshore_shallow_water_info: >-
+  இந்த இடத்தில் கடலின் ஆழம் சுமார் {depth} மீட்டர், இது ஆழ்கடல் பயணத்திற்கு
+  ஒப்பீட்டளவில் குறைவானது.
+
+# ── No-data / error labels ────────────────────────────────────────────────────
+
+# DRAFT
+no_data_label: "தரவு இல்லை"
+error_label: "பிழை"
+
+# ── Final advisory recommendation — DRAFT (needs native review) ───────────────
+
+final_advisory_heading: "ஒட்டுமொத்த ஆலோசனை"
+
+final_normal: >-
+  {location} அருகில் தற்போதைய கடல் நிலைமைகளின்படி, {trip_type} மீன்பிடிப்புக்கு
+  கடல் இயல்பான பருவகால வரம்பில் உள்ளது.
+  புறப்படுவதற்கு முன் IMD/INCOIS எச்சரிக்கைகளை சரிபார்க்கவும்.
+
+final_warm_anomaly: >-
+  {location} அருகில் கடல் வெப்பநிலை பருவகால சராசரியை விட அதிகமாக உள்ளது ({sst_c}°C).
+  மீன்கள் வழக்கத்தை விட ஆழமாக இருக்கலாம்.
+  புறப்படுவதற்கு முன் IMD/INCOIS எச்சரிக்கைகளை சரிபார்க்கவும்.
+
+final_heatwave: >-
+  {location} அருகில் கடல் வெப்ப அலை உள்ளது (கடல் வெப்பநிலை {sst_c}°C).
+  அதிக வெப்பநிலை கடல் உயிரினங்களின் நடத்தையை பாதிக்கலாம்.
+  புறப்படுவதற்கு முன் IMD/INCOIS எச்சரிக்கைகளை சரிபார்க்கவும்.
+
+final_cool_anomaly: >-
+  {location} அருகில் கடல் வெப்பநிலை பருவகால சராசரியை விட குறைவாக உள்ளது ({sst_c}°C).
+  இது ஊற்றுப்பாய்வை குறிக்கலாம். {trip_type} மீன்பிடிப்புக்கு நிலைமைகள் இயல்பான வரம்பில் உள்ளன.
+  புறப்படுவதற்கு முன் IMD/INCOIS எச்சரிக்கைகளை சரிபார்க்கவும்.
+
+final_no_sst: >-
+  {location} அருகில் இந்த காலகட்டத்திற்கு கடல் நிலை தரவு கிடைக்கவில்லை.
+  நம்பகத்தன்மை குறைவு. IMD/INCOIS எச்சரிக்கைகளை கட்டாயம் சரிபார்க்கவும்.
+
+final_disclaimer_short: >-
+  இந்த ஆலோசனை கவனிக்கப்பட்ட கடல் நிலைமைகளை மட்டுமே விவரிக்கிறது.
+  இது மீன் இருக்கும் இடங்களை கணிக்காது.

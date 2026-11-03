@@ -1,0 +1,26 @@
+﻿name,my_lat,my_lon,osm_lat,osm_lon,osm_display,distance_km,flag,notes
+name,lat,lon,,,,,bad_coords,Cannot parse lat='lat' lon='lon' as float.
+Kasimedu,13.12,80.29,13.136404,80.295801,"kasimedu, Ward 39, Zone 4 Tondiarpet, Chennai, Chennai District, Tamil Nadu, India",1.93,ok,
+Ennore,13.22,80.32,13.225826,80.324355,"Ennore, Ward 1, Zone 1 Tiruvottiyur, Chennai, Thiruvottiyur, Chennai District, Tamil Nadu, 600057, India",0.8,ok,
+Pulicat,13.42,80.32,13.417661,80.31667,"Pazhaverkadu, Ponneri, Thiruvallur, Tamil Nadu, India",0.44,ok,
+Mahabalipuram,12.62,80.19,12.619598,80.19365,"Mahabalipuram, Tirukalukundram, Chengalpattu, Tamil Nadu, 603104, India",0.4,ok,
+Marakkanam,12.2,79.95,12.195933,79.944182,"Marakkanam, Marakanam, Viluppuram, Tamil Nadu, 604303, India",0.78,ok,
+Cuddalore,11.72,79.77,11.520207,79.339636,"Cuddalore, Tamil Nadu, India",51.87,>5km,
+Parangipettai,11.49,79.77,11.490567,79.756898,"Parangipettai, Bhuvanagiri, Cuddalore, Tamil Nadu, 608502, India",1.43,ok,
+Tharangambadi,11.03,79.85,11.029929,79.852196,"Tharangambadi, Mayiladuthurai, Tamil Nadu, India",0.24,ok,
+Nagapattinam,10.77,79.84,10.60262,79.761935,"Nagapattinam, Tamil Nadu, India",20.47,>5km,
+Kodiyakarai,10.3,79.85,,,,,no_match,Nominatim returned no results for this query.
+Mallipattinam,10.28,79.3,10.279913,79.31781,"Mallipattinam, Pattukkottai, Thanjavur, Tamil Nadu, 614723, India",1.95,ok,
+Adirampattinam,10.34,79.38,10.331945,79.384877,"Adirampattinam, East Coast Road, Adirampattinam, Pattukkottai, Thanjavur, Tamil Nadu, 614701, India",1.04,ok,
+Rameswaram,9.29,79.31,9.284466,79.312555,"Rameswaram, Ramanathapuram, Tamil Nadu, 623526, India",0.68,ok,
+Pamban,9.28,79.22,9.282026,79.212682,"Pamban, Rameswaram, Ramanathapuram, Tamil Nadu, 623521, India",0.83,ok,
+Mandapam,9.28,79.13,9.282701,79.152671,"Mandapam, Ramanathapuram, Tamil Nadu, 623518, India",2.51,ok,
+Thoothukudi,8.76,78.14,8.845704,77.993818,"Thoothukudi, Tamil Nadu, India",18.68,>5km,
+Tiruchendur,8.49,78.12,8.495568,78.123324,"Tiruchendur, Thoothukudi, Tamil Nadu, 628200, India",0.72,ok,
+Kanyakumari,8.08,77.54,8.079252,77.549934,"Kanyakumari, Agastheeswaram, Kanniyakumari, Tamil Nadu, 629702, India",1.1,ok,
+Colachel,8.18,77.25,8.175266,77.251923,"Colachel, Kalkulam, Kanniyakumari, Tamil Nadu, 629251, India",0.57,ok,
+Muttom,8.12,77.31,8.124226,77.317808,"Muttom, Kalkulam, Kanniyakumari, Tamil Nadu, 629202, India",0.98,ok,
+Velankanni,,,,,,,no_coords_in_csv,No coordinates in ports.csv — operator needs to supply.
+Karaikal,,,,,,,no_coords_in_csv,No coordinates in ports.csv — operator needs to supply.
+Royapuram,,,,,,,no_coords_in_csv,No coordinates in ports.csv — operator needs to supply.
+Vizhinjam,,,,,,,no_coords_in_csv,No coordinates in ports.csv — operator needs to supply.

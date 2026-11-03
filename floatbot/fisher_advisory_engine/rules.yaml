@@ -1,0 +1,195 @@
+# =============================================================================
+# Fisher Advisory Engine — Rules
+# Version: 1.0.0
+#
+# DISABLED-BY-DEFAULT NOTICE
+# --------------------------
+# A rule is ACTIVE only when its `reference` field contains a real citation
+# (not "UNSOURCED - needs citation").
+#
+# Rules with reference == "UNSOURCED - needs citation" are DISABLED at load
+# time. They appear in the status report so you can add sources and enable them.
+#
+# Rule schema
+# -----------
+# id          : unique string identifier
+# condition   : Python-evaluable expression over indicator names:
+#                 sst_c         (float | None)   — observed SST
+#                 sst_anomaly_c (float | None)   — SST minus climatological mean
+#                 heatwave      (bool | None)     — Hobday heatwave flag
+#                 current_speed_ms (float | None) — surface current speed
+#                 current_dir_deg  (float | None) — direction degrees from north
+#                 front_detected   (bool | None)
+#                 front_strength   (str | None)   — "weak" | "moderate" | "strong"
+#                 front_dist_km    (float | None)
+#                 front_bearing_deg (float | None)
+#                 chl_category     (str | None)   — "LOW"|"MODERATE"|"HIGH"|"no_data"
+#                 mld_m            (float | None)  — mixed layer depth
+#                 depth_m          (float | None)  — bathymetry
+#                 trip_type        (str)           — "nearshore" | "offshore"
+# message_key : key in i18n/<lang>.yaml → rendered to text
+# params      : dict of named values passed to the template renderer
+# severity    : info | caution
+# reference   : citation; set to "UNSOURCED - needs citation" to disable
+# =============================================================================
+
+rules:
+
+  # ---------------------------------------------------------------------------
+  # GROUP A — SST / marine heatwave
+  # All disabled pending sourced thresholds and citations.
+  # ---------------------------------------------------------------------------
+
+  - id: A001_warm_anomaly_caution
+    condition: "sst_anomaly_c is not None and sst_anomaly_c >= 1.0"
+    message_key: warm_sst_anomaly_caution
+    params:
+      anomaly: "{sst_anomaly_c:.1f}"
+      sst: "{sst_c:.1f}"
+    severity: caution
+    reference: "UNSOURCED - needs citation"
+    # Rationale (disabled): elevated SST may cause fish to descend deeper,
+    # reducing near-surface catch rates. Threshold of +1°C is speculative.
+
+  - id: A002_heatwave_active
+    condition: "heatwave is True"
+    message_key: heatwave_active
+    params: {}
+    severity: caution
+    reference: "UNSOURCED - needs citation"
+    # Rationale (disabled): active Hobday (2016) heatwave may indicate
+    # stressed conditions for reef-associated species near Tamil Nadu coast.
+
+  - id: A003_cool_anomaly_info
+    condition: "sst_anomaly_c is not None and sst_anomaly_c <= -1.0"
+    message_key: cool_sst_anomaly_info
+    params:
+      anomaly: "{sst_anomaly_c:.1f}"
+      sst: "{sst_c:.1f}"
+    severity: info
+    reference: "UNSOURCED - needs citation"
+    # Rationale (disabled): cooler-than-normal SST may indicate upwelling,
+    # which can bring nutrients to the surface. Needs oceanographic citation.
+
+  # ---------------------------------------------------------------------------
+  # GROUP B — Currents
+  # ---------------------------------------------------------------------------
+
+  - id: B001_strong_current_caution
+    condition: "current_speed_ms is not None and current_speed_ms >= 0.75"
+    message_key: strong_current_caution
+    params:
+      speed: "{current_speed_ms:.2f}"
+    severity: caution
+    reference: "UNSOURCED - needs citation"
+    # Rationale (disabled): strong surface currents may affect fuel consumption
+    # and navigation. 0.75 m/s (~1.5 knots) threshold is speculative.
+
+  - id: B002_moderate_current_info
+    condition: >
+      current_speed_ms is not None and
+      0.35 <= current_speed_ms < 0.75
+    message_key: moderate_current_info
+    params:
+      speed: "{current_speed_ms:.2f}"
+    severity: info
+    reference: "UNSOURCED - needs citation"
+
+  # ---------------------------------------------------------------------------
+  # GROUP C — Thermal fronts
+  # ---------------------------------------------------------------------------
+
+  - id: C001_front_detected_info
+    condition: "front_detected is True"
+    message_key: thermal_front_detected
+    params:
+      strength: "{front_strength}"
+      dist_km: "{front_dist_km:.0f}"
+      bearing: "{front_bearing_deg:.0f}"
+    severity: info
+    reference: "UNSOURCED - needs citation"
+    # Rationale (disabled): thermal fronts are associated with fish aggregation
+    # in published literature (e.g. Lester et al. 2007 — NOT verified as
+    # applicable to Tamil Nadu coastal waters; needs local citation).
+
+  - id: C002_front_nearby_offshore
+    condition: >
+      front_detected is True and
+      front_dist_km is not None and
+      front_dist_km < 30 and
+      trip_type == "offshore"
+    message_key: thermal_front_nearby_offshore
+    params:
+      dist_km: "{front_dist_km:.0f}"
+    severity: info
+    reference: "UNSOURCED - needs citation"
+
+  # ---------------------------------------------------------------------------
+  # GROUP D — Productivity / chlorophyll
+  # ---------------------------------------------------------------------------
+
+  - id: D001_high_chl_info
+    condition: "chl_category == 'HIGH'"
+    message_key: high_chlorophyll_info
+    params: {}
+    severity: info
+    reference: "UNSOURCED - needs citation"
+    # Rationale (disabled): elevated Chl-a indicates phytoplankton bloom
+    # potentially supporting food web. Citation from Bay of Bengal literature needed.
+
+  - id: D002_low_chl_info
+    condition: "chl_category == 'LOW'"
+    message_key: low_chlorophyll_info
+    params: {}
+    severity: info
+    reference: "UNSOURCED - needs citation"
+
+  - id: D003_chl_no_data_info
+    condition: "chl_category == 'no_data'"
+    message_key: chlorophyll_no_data
+    params: {}
+    severity: info
+    reference: "UNSOURCED - needs citation"
+
+  # ---------------------------------------------------------------------------
+  # GROUP E — Subsurface / mixed layer depth
+  # ---------------------------------------------------------------------------
+
+  - id: E001_shallow_mld_info
+    condition: "mld_m is not None and mld_m < 20"
+    message_key: shallow_mld_info
+    params:
+      mld: "{mld_m:.0f}"
+    severity: info
+    reference: "UNSOURCED - needs citation"
+    # Rationale (disabled): shallow mixed layer may concentrate fish near surface.
+    # Threshold of 20 m is speculative; needs Bay of Bengal citation.
+
+  - id: E002_deep_mld_warm_info
+    condition: >
+      mld_m is not None and mld_m > 60 and
+      sst_anomaly_c is not None and sst_anomaly_c >= 1.0
+    message_key: deep_mld_warm_info
+    params:
+      mld: "{mld_m:.0f}"
+      anomaly: "{sst_anomaly_c:.1f}"
+    severity: info
+    reference: "UNSOURCED - needs citation"
+    # Rationale (disabled): deep warm mixed layer may push fish down; combined
+    # with warm anomaly could affect near-surface catch.
+
+  # ---------------------------------------------------------------------------
+  # GROUP F — Bathymetry / trip type
+  # ---------------------------------------------------------------------------
+
+  - id: F001_offshore_shallow_water
+    condition: >
+      trip_type == "offshore" and
+      depth_m is not None and depth_m < 50
+    message_key: offshore_shallow_water_info
+    params:
+      depth: "{depth_m:.0f}"
+    severity: info
+    reference: "UNSOURCED - needs citation"
+    # Rationale (disabled): if GEBCO shows the target area is < 50 m,
+    # it is effectively continental shelf even for an "offshore" trip.

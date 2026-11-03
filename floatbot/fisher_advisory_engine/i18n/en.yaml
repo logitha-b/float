@@ -1,0 +1,221 @@
+# =============================================================================
+# Fisher Advisory Engine — English templates
+# review_status: reviewed
+# =============================================================================
+#
+# Rules for template authors
+# --------------------------
+# 1. Full sentences only. Never assemble sentences from fragments.
+# 2. Every user-visible string is a key here — indicator names, direction
+#    words, confidence labels, "no data" labels, units, headings, errors,
+#    the disclaimer, the safety_line.
+# 3. Placeholders: {name} style. Use exactly the names documented below.
+# 4. safety_line and disclaimer are REQUIRED. Removing them breaks loading.
+# 5. Wording: hedged ("may", "could"). Forbidden: guarantees of catch,
+#    exact fish locations, "safe to sail".
+# =============================================================================
+
+# ── Required keys (non-removable) ────────────────────────────────────────────
+
+safety_line: >-
+  SAFETY: Check official IMD and INCOIS weather, wave, and cyclone warnings
+  before going to sea.
+
+disclaimer: >-
+  This advisory describes current ocean conditions only.
+  It does not predict fish locations, guarantee a catch, or declare any
+  trip safe or unsafe.
+
+# ── Card / page headings ─────────────────────────────────────────────────────
+
+card_title: "Fisher Condition Advisory"
+what_this_means_heading: "What this may mean"
+no_advisory_rules_active: >-
+  No condition advisories are active for this location and day.
+  (All rules are currently disabled pending source citations.)
+confidence_label_heading: "Confidence"
+data_age_label: "Data age"
+computed_at_label: "Computed"
+forecast_label: "model forecast"
+pending_review_banner: >-
+  This translation is pending native-language review.
+  Some text may be shown in English.
+
+# ── Header / location ────────────────────────────────────────────────────────
+
+header_short: "{location} | {day} | {trip_type}"
+speech_header: "Fisher advisory for {location} on {day}."
+
+unverified_coords_warning: >-
+  Warning: coordinates for this port are not yet verified.
+  All values below are computed at a placeholder location and are not valid.
+
+future_day_notice: >-
+  Note: tomorrow's conditions are based on the latest available observations.
+  SST values are observed data (not a forecast). Current speed and direction
+  are model forecasts.
+
+# ── Trip types ───────────────────────────────────────────────────────────────
+
+trip_type_nearshore: "nearshore (within ~12 NM)"
+trip_type_offshore: "offshore (beyond ~12 NM)"
+
+# ── SST ──────────────────────────────────────────────────────────────────────
+
+indicator_sst: "Sea temp"
+sst_line: "Sea surface temperature: {sst_c}°C{anomaly_inline}."
+sst_anomaly_inline: " ({anomaly}°C {direction} the seasonal average)"
+above: "above"
+below: "below"
+sst_no_data: "Sea surface temperature: no data available."
+sst_stale_notice: "Note: SST data is {age_h} hours old; conditions may have changed."
+heatwave_active_short: "⚠ Marine heatwave conditions detected."
+speech_sst: "Sea surface temperature is {sst_c} degrees Celsius."
+speech_heatwave: "A marine heatwave is currently active in this area."
+
+# ── Currents ─────────────────────────────────────────────────────────────────
+
+indicator_currents: "Currents"
+currents_line: "Surface current: {speed} m/s toward {direction} (model forecast)."
+currents_no_data: "Surface current: no data available."
+speech_currents: >-
+  Surface current speed is {speed} metres per second, moving toward {direction}.
+  This is a model forecast.
+
+# Cardinal directions (used as values in templates above)
+cardinal_n:  "north"
+cardinal_ne: "northeast"
+cardinal_e:  "east"
+cardinal_se: "southeast"
+cardinal_s:  "south"
+cardinal_sw: "southwest"
+cardinal_w:  "west"
+cardinal_nw: "northwest"
+
+# ── Thermal front ─────────────────────────────────────────────────────────────
+
+indicator_front: "Temperature front"
+front_detected_inline: "{strength} front, {dist_km} km away"
+front_not_detected: "No temperature front detected nearby."
+front_strength_weak: "weak"
+front_strength_moderate: "moderate"
+front_strength_strong: "strong"
+
+# ── Productivity ──────────────────────────────────────────────────────────────
+
+indicator_productivity: "Productivity"
+productivity_line: "Ocean productivity (chlorophyll): {category}."
+productivity_no_data: "Productivity: no data (cloud cover or data gap)."
+chl_no_data_short: "no data"
+chl_category_high: "HIGH"
+chl_category_moderate: "MODERATE"
+chl_category_low: "LOW"
+chl_category_no_data: "no data"
+
+# ── Confidence labels ─────────────────────────────────────────────────────────
+
+confidence_line: "Data confidence: {level}."
+confidence_high: "HIGH"
+confidence_medium: "MEDIUM"
+confidence_low: "LOW"
+speech_confidence: "Data confidence is {level}."
+
+# ── Severity prefixes (for advisory rule lines) ───────────────────────────────
+
+severity_info:    "Note"
+severity_caution: "Caution"
+
+# ── Rule message keys ──────────────────────────────────────────────────────────
+# (all rules currently disabled — templates here for when citations are added)
+
+warm_sst_anomaly_caution: >-
+  Sea surface temperature may be {anomaly}°C above the seasonal average
+  (observed: {sst}°C). This could cause fish to remain at greater depths.
+
+cool_sst_anomaly_info: >-
+  Sea surface temperature may be {anomaly}°C below the seasonal average
+  (observed: {sst}°C). Cooler water near the surface could indicate upwelling.
+
+heatwave_active: >-
+  A marine heatwave is currently active. Elevated sea temperatures may affect
+  fish behaviour and distribution.
+
+strong_current_caution: >-
+  Surface current speed may reach {speed} m/s. Strong currents could affect
+  fuel consumption and navigation.
+
+moderate_current_info: >-
+  Surface current speed is around {speed} m/s. Moderate currents may affect
+  net setting and retrieval.
+
+thermal_front_detected: >-
+  A {strength} temperature front is located approximately {dist_km} km away
+  at {bearing}° bearing. Temperature fronts may attract fish.
+
+thermal_front_nearby_offshore: >-
+  A temperature front is approximately {dist_km} km away, which may be
+  within offshore range.
+
+high_chlorophyll_info: >-
+  Chlorophyll levels are elevated, suggesting higher ocean productivity.
+  This may support fish food sources in this area.
+
+low_chlorophyll_info: >-
+  Chlorophyll levels are low, suggesting reduced ocean productivity.
+
+chlorophyll_no_data: >-
+  Chlorophyll data is not available, likely due to cloud cover or nearshore
+  turbidity. Ocean productivity cannot be assessed for this location.
+
+shallow_mld_info: >-
+  The ocean mixed layer may be shallow (approximately {mld} m deep).
+  Fish could be more concentrated near the surface.
+
+deep_mld_warm_info: >-
+  The mixed layer appears deep (approximately {mld} m), combined with a warm
+  temperature anomaly of {anomaly}°C. Fish may be distributed deeper in the
+  water column.
+
+offshore_shallow_water_info: >-
+  The seabed depth at this location is approximately {depth} m, which is
+  relatively shallow for an offshore trip.
+
+# ── No-data / error labels ────────────────────────────────────────────────────
+
+no_data_label: "no data"
+error_label: "error"
+
+# ── Final advisory recommendation (added 2026-10-09) ─────────────────────────
+# These keys are combined into the closing summary sentence.
+
+final_advisory_heading: "Overall Advisory"
+
+# Condition-based recommendation starters (hedged — no fish location prediction)
+final_normal: >-
+  Based on current sea conditions near {location}, the ocean appears within
+  normal seasonal range for {trip_type} fishing. Monitor conditions and check
+  IMD/INCOIS before departure.
+
+final_warm_anomaly: >-
+  Sea temperature near {location} is above the seasonal average ({sst_c}°C).
+  Fish may be deeper than usual. Conditions are otherwise within normal range
+  for {trip_type} fishing. Monitor conditions and check IMD/INCOIS before departure.
+
+final_heatwave: >-
+  A marine heatwave is active near {location} (sea temp {sst_c}°C).
+  Elevated temperatures may affect marine life behaviour. Exercise caution
+  and check IMD/INCOIS warnings before departure.
+
+final_cool_anomaly: >-
+  Sea temperature near {location} is below the seasonal average ({sst_c}°C),
+  which could indicate upwelling activity. Conditions are within normal range
+  for {trip_type} fishing. Check IMD/INCOIS before departure.
+
+final_no_sst: >-
+  Sea condition data near {location} could not be retrieved for this period.
+  Confidence is LOW. Do not rely on this advisory alone —
+  check IMD/INCOIS warnings before departure.
+
+final_disclaimer_short: >-
+  This advisory describes observed ocean conditions only.
+  It does not predict fish locations or guarantee any catch.

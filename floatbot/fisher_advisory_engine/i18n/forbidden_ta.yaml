@@ -1,0 +1,26 @@
+# =============================================================================
+# Fisher Advisory Engine — Forbidden phrases (Tamil / தமிழ்)
+# status: pending
+# reviewer: (not yet assigned — needs a native Tamil speaker)
+#
+# A test scans every Tamil template key against these phrases and fails if
+# any are found.  List is a first pass and MUST be reviewed by a native
+# Tamil speaker before production use.
+# =============================================================================
+
+# TODO: A native Tamil reviewer must populate this list.
+# The English forbidden_en.yaml categories apply as intent guidelines:
+#   1. Phrases guaranteeing a catch or predicting fish locations.
+#   2. Phrases declaring safety ("பாதுகாப்பானது", etc.).
+#   3. Hard predictions without hedging.
+#
+# Placeholder entries (review and extend):
+forbidden:
+  - "மீன் இங்கே இருக்கும்"          # "fish will be here" — TODO: verify
+  - "கண்டிப்பாக"                    # "definitely"        — TODO: verify
+
+safety_forbidden:
+  - "செல்வது பாதுகாப்பானது"         # "going is safe"     — TODO: verify
+  - "கடல் பாதுகாப்பானது"            # "sea is safe"       — TODO: verify
+
+prediction_forbidden: []              # TODO: native reviewer to populate

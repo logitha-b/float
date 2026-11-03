@@ -1,0 +1,39 @@
+# =============================================================================
+# Fisher Advisory Engine — Forbidden phrases (English)
+# status: pending
+# reviewer: (not yet assigned)
+#
+# A test scans every English template key against these phrases and fails if
+# any are found.  Add phrases that must never appear in user-facing output.
+#
+# Status: pending — list is a first pass.  A reviewer must confirm and
+# extend this list before the module goes to production.
+# =============================================================================
+
+# Phrases that guarantee a catch or predict fish locations
+forbidden:
+  - "fish will be here"
+  - "fish are at"
+  - "you will catch"
+  - "guaranteed catch"
+  - "best fishing spot"
+  - "go to this location"
+  - "fish are located at"
+
+# Phrases that declare safety
+safety_forbidden:
+  - "safe to sail"
+  - "safe to go"
+  - "it is safe"
+  - "no danger"
+  - "conditions are safe"
+  - "weather is safe"
+
+# Phrases that make hard predictions (not hedged)
+prediction_forbidden:
+  - "fish will"
+  - "you will find"
+  - "definitely"
+  - "certainly"
+  - "guaranteed"
+  - "100%"

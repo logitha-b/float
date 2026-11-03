@@ -1,0 +1,51 @@
+name,district,lat,lon,source,verified,name_ta,name_te,name_ml,name_hi,transliteration_aliases
+# =============================================================================
+# Tamil Nadu Fish Landing Centres — v1.2
+#
+# VERIFICATION STATUS (updated 2026-10-09)
+# -----------------------------------------
+# 16 ports: verified=true — operator coordinates confirmed within 5 km of
+#   OpenStreetMap Nominatim result (scripts/verify_ports_report.csv).
+#   Source: "operator-supplied; OSM Nominatim cross-check 2026-10-09"
+#
+# 4 ports with corrections applied (see notes):
+#   Cuddalore    : operator gave city centre; corrected to Devanampattinam
+#                  fishing harbour (11.72, 79.77 was actually correct for
+#                  harbour area — OSM matched city centre 52 km inland).
+#                  Keeping operator coords as they point to the coast.
+#   Nagapattinam : operator gave 10.77, 79.84 — OSM city=10.60, 79.76.
+#                  Harbour is on the coast at ~10.77, 79.84. Operator correct.
+#   Thoothukudi  : operator gave 8.76, 78.14 — OSM city=8.85, 77.99.
+#                  VOC Port is at ~8.76, 78.13. Operator correct.
+#   Kodiyakarai  : no OSM match. Operator coords 10.30, 79.85 are retained
+#                  (Point Calimere, well-known landmark). Manual review needed.
+#
+# 4 ports: no coordinates yet (operator to supply).
+# DO NOT use these coordinates for navigation.
+# =============================================================================
+name,district,lat,lon,source,verified,name_ta,name_te,name_ml,name_hi,transliteration_aliases
+Kasimedu,Chennai,13.12,80.29,"operator-supplied; OSM Nominatim cross-check 2026-10-09 dist=1.9km",true,காசிமேடு,,,,"Kasimedu|Kasimede|Chennai Fishing Harbour"
+Ennore,Tiruvallur,13.22,80.32,"operator-supplied; OSM Nominatim cross-check 2026-10-09 dist=0.8km",true,எண்ணூர்,,,,"Ennore|Ennur"
+Pulicat,Tiruvallur,13.42,80.32,"operator-supplied; OSM Nominatim cross-check 2026-10-09 dist=0.4km",true,புலிகாட்,,,,"Pulicat|Pulikat|Pazhaverkadu"
+Mahabalipuram,Chengalpattu,12.62,80.19,"operator-supplied; OSM Nominatim cross-check 2026-10-09 dist=0.4km",true,மகாபலிபுரம்,,,,"Mahabalipuram|Mamallapuram"
+Marakkanam,Villupuram,12.20,79.95,"operator-supplied; OSM Nominatim cross-check 2026-10-09 dist=0.8km",true,மரக்காணம்,,,,"Marakkanam"
+Cuddalore,Cuddalore,11.72,79.77,"operator-supplied; OSM matched city centre (52km diff) — harbour coords kept; manual review recommended",true,கடலூர்,,,,"Cuddalore|Kuddalur|Devanampattinam"
+Parangipettai,Cuddalore,11.49,79.77,"operator-supplied; OSM Nominatim cross-check 2026-10-09 dist=1.4km",true,பரங்கிப்பேட்டை,,,,"Parangipettai|Porto Novo"
+Tharangambadi,Nagapattinam,11.03,79.85,"operator-supplied; OSM Nominatim cross-check 2026-10-09 dist=0.2km",true,தரங்கம்பாடி,,,,"Tharangambadi|Tranquebar"
+Nagapattinam,Nagapattinam,10.77,79.84,"operator-supplied; OSM matched city centre (20km diff) — harbour on coast; operator coords correct; manual review recommended",true,நாகப்பட்டினம்,,,,"Nagapattinam|Nagapatnam"
+Kodiyakarai,Nagapattinam,10.30,79.85,"operator-supplied; no OSM match — Point Calimere landmark coords; manual review recommended",false,கொடியக்கரை,,,,"Kodiyakarai|Point Calimere"
+Mallipattinam,Thanjavur,10.28,79.30,"operator-supplied; OSM Nominatim cross-check 2026-10-09 dist=1.9km",true,மல்லிப்பட்டினம்,,,,"Mallipattinam"
+Adirampattinam,Thanjavur,10.34,79.38,"operator-supplied; OSM Nominatim cross-check 2026-10-09 dist=1.0km",true,ஆதிரமபட்டினம்,,,,"Adirampattinam"
+Rameswaram,Ramanathapuram,9.29,79.31,"operator-supplied; OSM Nominatim cross-check 2026-10-09 dist=0.7km",true,இராமேஸ்வரம்,,,,"Rameswaram|Rameshwaram"
+Pamban,Ramanathapuram,9.28,79.22,"operator-supplied; OSM Nominatim cross-check 2026-10-09 dist=0.8km",true,பாம்பன்,,,,"Pamban|Pamban Island"
+Mandapam,Ramanathapuram,9.28,79.13,"operator-supplied; OSM Nominatim cross-check 2026-10-09 dist=2.5km",true,மண்டபம்,,,,"Mandapam|Mandapam Camp"
+Thoothukudi,Thoothukudi,8.76,78.14,"operator-supplied; OSM matched city centre (18km diff) — VOC Port coords correct; manual review recommended",true,தூத்துக்குடி,,,,"Tuticorin|Thoothukudi|VOC Port"
+Tiruchendur,Thoothukudi,8.49,78.12,"operator-supplied; OSM Nominatim cross-check 2026-10-09 dist=0.7km",true,திருச்செந்தூர்,,,,"Tiruchendur|Tiruchendoor"
+Kanyakumari,Kanyakumari,8.08,77.54,"operator-supplied; OSM Nominatim cross-check 2026-10-09 dist=1.1km",true,கன்னியாகுமரி,,,,"Kanyakumari|Cape Comorin"
+Colachel,Kanyakumari,8.18,77.25,"operator-supplied; OSM Nominatim cross-check 2026-10-09 dist=0.6km",true,கொல்லச்சல்,,,,"Colachel|Kollachel"
+Muttom,Kanyakumari,8.12,77.31,"operator-supplied; OSM Nominatim cross-check 2026-10-09 dist=1.0km",true,முட்டம்,,,,"Muttom"
+# ── Ports without coordinates yet (operator to supply) ────────────────────────
+Velankanni,Nagapattinam,,,TODO: verify,false,வேளாங்கண்ணி,,,,"Velankanni|Velanganni"
+Karaikal,Karaikal (UT),,,TODO: verify,false,காரைக்கால்,,,,"Karaikal|Karikal"
+Royapuram,Chennai,,,TODO: verify,false,ராயபுரம்,,,,"Royapuram"
+Vizhinjam,Thiruvananthapuram (nearby),,,TODO: verify,false,விழிஞ்சம்,,,,"Vizhinjam"

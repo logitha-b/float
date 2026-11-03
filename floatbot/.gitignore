@@ -1,0 +1,41 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+
+# Virtual environments
+venv/
+env/
+.env
+.venv
+
+# Cache directories (auto-generated at runtime)
+ose_cache/
+fae_cache/
+
+# Streamlit
+.streamlit/
+
+# Pytest
+.pytest_cache/
+*.pytest_cache/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+
+# Temp / debug scripts
+_check_*.py
+_test_*.py
+_smoke_*.py
+_syntax_*.py
+_show_*.py
+
+# Logs
+*.log
